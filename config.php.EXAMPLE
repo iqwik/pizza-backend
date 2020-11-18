@@ -1,0 +1,56 @@
+<?php
+/* optionally */
+// error_reporting(E_ALL);
+// date_default_timezone_set('Europe/Moscow');
+
+$config = [
+    'root' => __DIR__,
+    'autoload_dirs' => [
+        'lib',
+        'lib/api',
+        'lib/common',
+        'lib/util'
+    ],
+    'domain' => 'http://pizza.site',
+    'db' => [
+        'username' => 'root',
+        'password' => '123456',
+        'name' => 'pizza',
+        'host' => 'localhost',
+    ],
+    'allowed_domains' => ['*'],
+    'cookie' => [
+        'name' => "jwt",
+        'expires' => 3600,
+        'path' => "/",
+        'domain' => "",
+        'secure' => false,
+        'httponly' => true,
+    ],
+    'session' => [
+    		'name' => 'SSN',
+    		'path' => __DIR__ . '/sessions'
+    ],
+    'smtp' => [
+        'charset' => 'UTF-8',
+        'from' => [
+            'email' => 'example@mail.ru',
+            'name' => 'example'
+        ],
+        'admin_email' => [
+            'email' => 'example@mail.ru',
+            'name' => 'example'
+        ],
+        'host' => 'smtp.mail.ru',
+        'username' => 'example@mail.ru',
+        'password' => '123456',
+        'port' => '465',
+        'secure' => 'ssl',
+    ]
+];
+
+$config['jwt'] = [
+    'key' => "your_secret_key",
+    'iss' => $config['domain'],
+    'leeway' => 30 // response timeout in seconds
+];
